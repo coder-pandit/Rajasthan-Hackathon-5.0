@@ -4,6 +4,7 @@ package com.example.kumar.mharorajasthan;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,7 +43,8 @@ public class PackagesFragment extends Fragment {
     private static final String URL = "https://api.sygictravelapi.com/1.1/en/tours/viator?parent_place_id=region:271";
 
 
-    private List<Place> packageList;
+    private List<Tour> packageList;
+    private PackageAdapter mAdapter;
 
     private RecyclerView packageListView;
 
@@ -59,30 +61,28 @@ public class PackagesFragment extends Fragment {
 
         packageListView = view.findViewById(R.id.package_list);
 
+        packageListView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        packageListView.setLayoutManager(layoutManager);
+
         StringRequest request = new StringRequest(URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                int maxLogSize = 1000;
-                for(int i = 0; i <= response.length() / maxLogSize; i++) {
-                    int start = i * maxLogSize;
-                    int end = (i+1) * maxLogSize;
-                    end = end > response.length() ? response.length() : end;
-                    Log.d(TAG, response.substring(start, end));
+                Log.d(TAG, "onResponse: " + response);
+                GsonBuilder builder = new GsonBuilder();
+                Gson gson = builder.create();
+                try {
+                    JSONObject root = new JSONObject(response);
+                    JSONObject data = root.getJSONObject("data");
+
+                    Data1 data1 = gson.fromJson(data.toString(), Data1.class);
+                    packageList = new ArrayList<>(data1.getTours());
+
+                    mAdapter = new PackageAdapter(getContext(), packageList);
+                    packageListView.setAdapter(mAdapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                // Log.d(TAG, "onResponse: " + response);
-                // GsonBuilder builder = new GsonBuilder();
-                // Gson gson = builder.create();
-                // try {
-                //     JSONObject root = new JSONObject(response);
-                //     JSONObject data = root.getJSONObject("data");
-                //     Data data1 = gson.fromJson(data.toString(), Data.class);
-                //     placesList = new ArrayList<>(data1.getPlaces());
-                //
-                //     mAdapter = new HomeAdapter(getContext(), placesList);
-                //     placesListView.setAdapter(mAdapter);
-                // } catch (JSONException e) {
-                //     e.printStackTrace();
-                // }
             }
         }, new Response.ErrorListener() {
             @Override

@@ -3,6 +3,7 @@ package com.example.kumar.mharorajasthan;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,6 +54,10 @@ public class RestaurantsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_restaurants, container, false);;
 
         restroListView = view.findViewById(R.id.restro_list);
+
+        restroListView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        restroListView.setLayoutManager(layoutManager);
 
         StringRequest request = new StringRequest(URL, new Response.Listener<String>() {
             @Override
