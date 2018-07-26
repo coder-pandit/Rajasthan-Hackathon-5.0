@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "722708143412",
+    "firebase_url": "https://mharorajasthan-900a0.firebaseio.com",
+    "project_id": "mharorajasthan-900a0",
+    "storage_bucket": "mharorajasthan-900a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722708143412:android:40d3d5c5d83f3972",
+        "android_client_info": {
+          "package_name": "com.example.kumar.mharorajasthan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722708143412-m4h4gp4bedo6rg96va260aie5asmle3e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kumar.mharorajasthan",
+            "certificate_hash": "0e39eb4648343222a50c56bb468d52682c999a2f"
+          }
+        },
+        {
+          "client_id": "722708143412-5uuo0erseq2p7m3rcrjc026uapl1u57f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9LF5-OqNFgbmmctcZriyLBsEuXun96XY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722708143412-5uuo0erseq2p7m3rcrjc026uapl1u57f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
